@@ -27,8 +27,18 @@ AuthorSchema
   return fullname;
 });
 
-// Virtual for author's lifespan
-AuthorSchema.virtual('lifespan').get(function() {});
+// Virtual for author's lifespan - ADDED BY ME
+AuthorSchema.virtual('lifespan').get(function() {
+  var lifetime_string = '';4
+  if (this.date_of_birth) {
+    lifetime_string = this.date_of_birth.getYear().toString();
+  }
+  lifetime_string += ' - ';
+  if (this.date_of_death) {
+    lifetime_string += this.date_of_death.getYear.toString();
+  }
+  return lifetime_string;
+});
 
 //Export model
 module.exports = mongoose.model('Author', AuthorSchema);
